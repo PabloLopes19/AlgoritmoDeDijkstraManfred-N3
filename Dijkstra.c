@@ -9,7 +9,7 @@ void dijkstra(int graph[MAX_NODES][MAX_NODES], int source, int target, int numNo
     bool visited[MAX_NODES];
     int previous[MAX_NODES];
 
-    for (int i = 0; i < numNodes; i++) {
+    for (int i = 0; i < numNodes; ++i) {
         dist[i] = INFINITY;
         visited[i] = false;
         previous[i] = -1;
@@ -17,12 +17,12 @@ void dijkstra(int graph[MAX_NODES][MAX_NODES], int source, int target, int numNo
 
     dist[source] = 0;
 
-    for (int count = 0; count < numNodes - 1; count++) {
+    for (int count = 0; count < numNodes - 1; ++count) {
         int minDist = INFINITY;
         int minDistNode = -1;
 
         for (int v = 0; v < numNodes; ++v) {
-            if (!visited[v] && dist[v] <= minDist) {
+            if (!visited[v] && dist[v] < minDist) {
                 minDist = dist[v];
                 minDistNode = v;
             }
@@ -39,7 +39,8 @@ void dijkstra(int graph[MAX_NODES][MAX_NODES], int source, int target, int numNo
         }
     }
 
-    printf("O menor caminho do grafo %d para o grafo %d:\n", source, target);
+    // Print the shortest path and its cost
+    printf("Shortest path from node %d to node %d:\n", source, target);
 
     int currentNode = target;
     int path[MAX_NODES];
@@ -58,9 +59,9 @@ void dijkstra(int graph[MAX_NODES][MAX_NODES], int source, int target, int numNo
             }
         }
 
-        printf("\nCusto: %d\n", dist[target]);
+        printf("\nCost: %d\n", dist[target]);
     } else {
-        printf("Não há caminhos.\n");
+        printf("No path exists.\n");
     }
 }
 
@@ -68,21 +69,21 @@ int main() {
     int numNodes, source, target;
     int graph[MAX_NODES][MAX_NODES];
 
-    printf("Digite o número de grafos na tabela: ");
+    printf("Enter the number of nodes in the graph: ");
     scanf("%d", &numNodes);
 
-    printf("Digite a matriz adjacente:\n");
+    printf("Enter the adjacency matrix:\n");
 
-    for (int i = 0; i < numNodes; i++) {
-        for (int j = 0; j < numNodes; j++) {
+    for (int i = 0; i < numNodes; ++i) {
+        for (int j = 0; j < numNodes; ++j) {
             scanf("%d", &graph[i][j]);
         }
     }
 
-    printf("Digite o grafo de partida: ");
+    printf("Enter the source node: ");
     scanf("%d", &source);
 
-    printf("Digite o grafo de destino: ");
+    printf("Enter the target node: ");
     scanf("%d", &target);
 
     dijkstra(graph, source, target, numNodes);
