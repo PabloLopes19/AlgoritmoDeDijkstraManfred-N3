@@ -9,7 +9,7 @@ void dijkstra(int graph[MAX_NODES][MAX_NODES], int source, int target, int numNo
     bool visited[MAX_NODES];
     int previous[MAX_NODES];
 
-    for (int i = 0; i < numNodes; ++i) {
+    for (int i = 0; i < numNodes; i++) {
         dist[i] = INFINITY;
         visited[i] = false;
         previous[i] = -1;
@@ -17,7 +17,7 @@ void dijkstra(int graph[MAX_NODES][MAX_NODES], int source, int target, int numNo
 
     dist[source] = 0;
 
-    for (int count = 0; count < numNodes - 1; ++count) {
+    for (int count = 0; count < numNodes - 1; count++) {
         int minDist = INFINITY;
         int minDistNode = -1;
 
@@ -73,8 +73,8 @@ int main() {
 
     printf("Digite a matriz adjacente:\n");
 
-    for (int i = 0; i < numNodes; ++i) {
-        for (int j = 0; j < numNodes; ++j) {
+    for (int i = 0; i < numNodes; i++) {
+        for (int j = 0; j < numNodes; j++) {
             scanf("%d", &graph[i][j]);
         }
     }
